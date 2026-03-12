@@ -30,12 +30,13 @@ Note: This is not an unsupervised install script.
 
 ## Profile
 ### What does a Profile Capture
- Area | what's Saved |
- Extensions | Enable extension UUIDs + all extension dconf settings |
- Workspace | WM keybindings, custom shortcuts, mutter settings |
- Wallpapers | Light and dark wallpapers (optional) + picture options + Wallpaper Collection |
- Configs | App configs, terminal configs + bash configs (tbd) |
- Custom Scripts (Optional) | any scripts in ~/custom-scripts/ |
+| Folder | what's Saved |
+|---|---|
+| Extensions | Enable extension UUIDs + all extension dconf settings |
+| Workspace | WM keybindings, custom shortcuts, mutter settings |
+| Wallpapers | Light and dark wallpapers (optional) + picture options + Wallpaper Collection |
+| Configs | App configs, terminal configs + bash configs (tbd) |
+| Custom Scripts (Optional) | any scripts in ~/custom-scripts/ |
 
  
 ### Creating a New Profile
