@@ -1,0 +1,9 @@
+[/]
+auto-maximize=false
+dynamic-workspaces=false
+overlay-key='Super_R'
+workspaces-only-on-primary=true
+
+[keybindings]
+toggle-tiled-left=@as []
+toggle-tiled-right=@as []

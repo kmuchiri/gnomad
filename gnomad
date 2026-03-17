@@ -1,2 +1,48 @@
 #!/bin/bash
 
+#!/bin/bash
+
+print_logo() {
+    cat << EOF
+  ░██████                                                          ░██ 
+ ░██   ░██                                                         ░██ (${DISTRO_STR:-ARCH})
+░██        ░████████   ░███████  ░█████████████   ░██████    ░████████ 
+░██  █████ ░██    ░██ ░██    ░██ ░██   ░██   ░██       ░██  ░██    ░██ 
+░██     ██ ░██    ░██ ░██    ░██ ░██   ░██   ░██  ░███████  ░██    ░██ 
+ ░██  ░███ ░██    ░██ ░██    ░██ ░██   ░██   ░██ ░██   ░██  ░██   ░███ 
+  ░█████░█ ░██    ░██  ░███████  ░██   ░██   ░██  ░█████░██  ░█████░██
+
+EOF
+}
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source OS Detection and Utilities
+source "$SCRIPT_DIR/utils/utils.sh"
+
+clear
+print_logo
+
+COMMAND="$1"
+shift
+
+case "$COMMAND" in
+  create)
+    bash "$SCRIPT_DIR/cli/create.sh" "$@"
+    ;;
+  load)
+    bash "$SCRIPT_DIR/cli/load.sh" "$@"
+    ;;
+  list)
+    bash "$SCRIPT_DIR/cli/list.sh" "$@"
+    ;;
+  *)
+    echo "Usage: $0 {create|load|list} [profile-name]"
+    echo ""
+    echo "  create <name>   Capture current system state into a named profile"
+    echo "  load   <name>   Apply a saved profile to the system"
+    echo "  list            Show all available profiles"
+    echo ""
+    exit 1
+    ;;
+esac

@@ -1,0 +1,20 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+next=['<Alt>Page_Down']
+play=['Favorites']
+previous=['<Alt>Page_Up']
+
+[custom-keybindings/custom0]
+binding='<Super>Return'
+command='kitty'
+name='kitty'
+
+[custom-keybindings/custom1]
+binding='<Super>h'
+command='/home/km/.custom-scripts/top-panel-toggle.sh'
+name='hide top panel'
+
+[custom-keybindings/custom2]
+binding='<Super>space'
+command='vicinae toggle'
+name='vicinae'
