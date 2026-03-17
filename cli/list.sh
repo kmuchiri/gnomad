@@ -5,7 +5,7 @@ PROFILES_DIR="$ROOT_DIR/profiles"
 
 if [ ! -d "$PROFILES_DIR" ] || [ -z "$(ls -A "$PROFILES_DIR" 2>/dev/null)" ]; then
   echo "No profiles found."
-  echo "Create one with: ./gnomad-arch.sh create <name>"
+  echo "Create one with: ./gnomad create <name>"
   exit 0
 fi
 
@@ -17,4 +17,4 @@ for profile_path in "$PROFILES_DIR"/*/; do
   echo "  • $name"
 done
 echo ""
-echo "Load a profile with: ./gnomad-arch.sh load <name>"
+echo "Load a profile with: ./gnomad load <name>"

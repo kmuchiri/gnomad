@@ -4,7 +4,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PROFILE_NAME="$1"
 
 if [ -z "$PROFILE_NAME" ]; then
-  echo "Usage: gnomad-arch.sh create <profile-name>"
+  echo "Usage: ./gnomad create <profile-name>"
   exit 1
 fi
 

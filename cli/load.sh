@@ -4,7 +4,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PROFILE_NAME="$1"
 
 if [ -z "$PROFILE_NAME" ]; then
-  echo "Usage: gnomad-arch.sh load <profile-name>"
+  echo "Usage: ./gnomad load <profile-name>"
   exit 1
 fi
 
@@ -12,7 +12,7 @@ PROFILE_DIR="$ROOT_DIR/profiles/$PROFILE_NAME"
 
 if [ ! -d "$PROFILE_DIR" ]; then
   echo "Error: Profile '$PROFILE_NAME' not found."
-  echo "Run './gnomad-arch.sh list' to see available profiles."
+  echo "Run './gnomad list' to see available profiles."
   exit 1
 fi
 
