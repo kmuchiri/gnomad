@@ -50,7 +50,7 @@ Note: This is not an unsupervised install script.
 ### What does a Profile Capture
 
 | Folder | what's Saved |
-|---|---|
+| --- | --- |
 | Extensions | Enable extension UUIDs + all extension dconf settings |
 | Workspace | WM keybindings, custom shortcuts, mutter settings |
 | Wallpapers | Light and dark wallpapers (optional) + picture options + Wallpaper Collection |
