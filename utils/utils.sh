@@ -23,7 +23,7 @@ elif [[ "$OS" == "fedora" || "$OS_ID_LIKE" == *"fedora"* ]]; then
   export DISTRO_STR="FEDORA"
   source "$UTILS_DIR/fedora-utils.sh"
 else
-  echo "OS unsupported or not identified: $OS"
+  echo "Distro unsupported or not identified: $OS"
   echo "Currently supported: Arch, Debian/Ubuntu, Fedora"
   exit 1
 fi
