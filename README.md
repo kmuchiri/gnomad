@@ -41,7 +41,7 @@ sudo apt-get install -y python3-pipx gnome-shell-extensions
 
 Note: This is not an unsupervised install script.
 
-- The GUI is invoked when installing extentions. This means that foe each extension you have to select install when prompted.
+- The GUI is invoked when installing extentions. This means that for each extension you have to select install when prompted.
 - There is a bug that restarts the shell, logging the user out. Running the script again will resume the setup process.
 - To copy wallpapers and other files, sudo is involved.
 
