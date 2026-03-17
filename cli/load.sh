@@ -19,6 +19,12 @@ fi
 echo "Loading profile: $PROFILE_NAME"
 echo ""
 
+# Ensure base dependencies are installed
+source "$ROOT_DIR/utils/utils.sh"
+echo "Verifying base dependencies..."
+install_packages "$PKG_DCONF" "$PKG_PIPX" "$PKG_GNOME_EXTENSIONS"
+echo ""
+
 bash "$ROOT_DIR/utils/import/import-extensions.sh" "$PROFILE_DIR"
 bash "$ROOT_DIR/utils/import/import-workspace.sh"  "$PROFILE_DIR"
 bash "$ROOT_DIR/utils/import/import-wallpapers.sh" "$PROFILE_DIR" "$PROFILE_NAME"

@@ -10,10 +10,24 @@ Note: This script focuses on extensions, keybindings, wallpaper and workspace co
 
 *system*: Arch, Fedora or Debian based distributions with GNOME 45+ (tested on Arch Based Distro with GNOME 48,49)
 
-*Dependencies* (install before loading any profile)
+*Dependencies* - Recommended to install before loading any profile, however load option will attempt to install them if missing.
+
+### Arch
 
 ```bash
 sudo pacman -S python-pipx gnome-shell-extensions
+```
+
+### Fedora
+
+```bash
+sudo dnf install -y python-pipx gnome-shell-extensions
+```
+
+### Debian
+
+```bash
+sudo apt-get install -y python3-pipx gnome-shell-extensions
 ```
 
 ## Usage

@@ -3,6 +3,7 @@
 # Arch Linux Utilities
 export PKG_PIPX="python-pipx"
 export PKG_GNOME_EXTENSIONS="gnome-shell-extensions"
+export PKG_DCONF="dconf"
 
 # Function to check if a package is installed
 is_installed() {
