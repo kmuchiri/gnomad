@@ -33,17 +33,17 @@ sudo apt-get install -y python3-pipx gnome-shell-extensions
 ## Usage
 
 ```bash
-./gnomad.sh create <profile-name> # Snapshot current system into a profile
-./gnomad.sh load <profile-name> #Apply a saved profile to the system
-./gnomad.sh list # List all saved profiles
+./gnomad create <profile-name> # Snapshot current system into a profile
+./gnomad load <profile-name> #Apply a saved profile to the system
+./gnomad list # List all saved profiles
 
 ```
 
 Note: This is not an unsupervised install script.
 
 - The GUI is invoked when installing extentions. This means that for each extension you have to select install when prompted.
-- There is a bug that restarts the shell, logging the user out. Running the script again will resume the setup process.
-- To copy wallpapers and other files, sudo is involved.
+- There is a bug that restarts the shell during extension installation, logging the user out. Running the script again will resume the setup process.
+- To copy wallpapers and other files, sudo is required.
 
 ## Profile
 
@@ -64,7 +64,7 @@ Run `create` on a machine you've already customised and configured to your likin
 No manual editing required
 
 ```bash
-./gnomad.sh create my-setup
+./gnomad create my-setup
 ```
 
 ### Loading a Profile
@@ -72,5 +72,13 @@ No manual editing required
 Run the following on the machine you'd like to configure.
 
 ```bash
-./gnomad.sh load my-setup
+./gnomad load my-setup
 ```
+
+## Utils
+
+Contains the OS detection and utility functions for each distro. Also contains the export and import scripts.
+
+### Creating a custom scripts
+
+To create custom import/export scripts, create a new file in the utils/custom directory. Add the import to create and the export to the load cli.
