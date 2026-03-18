@@ -1,4 +1,4 @@
-# GNOMad
+# gnomad
 
 A setup migration utility script for GNOME DE.
 
@@ -8,7 +8,7 @@ Note: This script focuses on extensions, keybindings, wallpaper and workspace co
 
 ## Requirements
 
-*system*: Arch, Fedora or Debian based distributions with GNOME 45+ (tested on Arch Based Distro with GNOME 48,49)
+*System*: Arch, Fedora or Debian based distributions with GNOME 45+ (tested on Arch Based Distro with GNOME 48,49)
 
 *Dependencies* - Recommended to install before loading any profile, however load option will attempt to install them if missing.
 
@@ -33,9 +33,9 @@ sudo apt-get install -y python3-pipx gnome-shell-extensions
 ## Usage
 
 ```bash
-./gnomad create <profile-name> # Snapshot current system into a profile
-./gnomad load <profile-name> #Apply a saved profile to the system
-./gnomad list # List all saved profiles
+./gnomad create <profile-name>  # Snapshot current system into a profile
+./gnomad load <profile-name>    # Apply a saved profile to the system
+./gnomad list                   # List all saved profiles
 
 ```
 
@@ -44,6 +44,24 @@ Note: This is not an unsupervised install script.
 - The GUI is invoked when installing extentions. This means that for each extension you have to select install when prompted.
 - There is a bug that restarts the shell during extension installation, logging the user out. Running the script again will resume the setup process.
 - To copy wallpapers and other files, sudo is required.
+
+## Repo Structure
+
+```text
+.
+├── cli/           # Contains CLI command scripts (create, load, list)
+├── profiles/      # Directory storing saved GNOME profile configurations
+├── utils/         # OS-specific utilities and import/export scripts
+└── gnomad         # Entrypoint executable
+```
+
+## CLI
+
+The `cli/` directory contains the core logic for the commands provided by the `gnomad` wrapper.
+
+- `create.sh`: Handles snapshotting the current system into a profile.
+- `load.sh`: Responsible for applying a saved profile to the system.
+- `list.sh`: Lists all currently available profiles.
 
 ## Profile
 
@@ -60,8 +78,6 @@ Note: This is not an unsupervised install script.
 ### Creating a New Profile
 
 Run `create` on a machine you've already customised and configured to your liking. All settiings are captured from the live GNOME session via `dconf dump` and `gsettings get`.
-
-No manual editing required
 
 ```bash
 ./gnomad create my-setup
