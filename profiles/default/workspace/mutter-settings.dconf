@@ -1,6 +1,7 @@
 [/]
 auto-maximize=false
 dynamic-workspaces=false
+edge-tiling=false
 overlay-key='Super_R'
 workspaces-only-on-primary=true
 

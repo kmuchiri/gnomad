@@ -6,9 +6,8 @@ caffeine@patapon.info
 openbar@neuromorph
 notification-timeout@chlumskyvaclav.gmail.com
 nightthemeswitcher@romainvigier.fr
-quick@web.search
 just-perfection-desktop@just-perfection
 blur-my-shell@aunetx
-forge@jmmaranan.com
 dash-to-dock@micxgx.gmail.com
 appindicatorsupport@rgcjonas.gmail.com
+gnome-mosaic@jardon.github.com
