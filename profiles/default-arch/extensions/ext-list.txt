@@ -1,0 +1,13 @@
+clipboard-history@alexsaveau.dev
+window-title-is-back@fthx
+Bluetooth-Battery-Meter@maniacx.github.com
+caffeine@patapon.info
+openbar@neuromorph
+notification-timeout@chlumskyvaclav.gmail.com
+nightthemeswitcher@romainvigier.fr
+just-perfection-desktop@just-perfection
+blur-my-shell@aunetx
+dash-to-dock@micxgx.gmail.com
+appindicatorsupport@rgcjonas.gmail.com
+advanced-media-controller@sanjai.com
+gnome-mosaic@jardon.github.com
