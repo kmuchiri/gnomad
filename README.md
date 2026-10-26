@@ -9,75 +9,56 @@ Captures your current GNOME environment into a profile, and duplicates it on ano
 
 ---
 
-## Requirements
+## Installation
 
-- **System**: Arch, Fedora, or Debian/Ubuntu-based distributions with GNOME 45+ (tested on Arch with GNOME 48, 49).
-- **Dependencies**: Recommended to install before loading a profile (the `load` command will also attempt to auto-install them):
+Install `gnomad` on any Linux distribution running GNOME with a single command (no root/sudo required):
 
-### Arch
 ```bash
-sudo pacman -S python-pipx gnome-shell-extensions
+curl -fsSL https://raw.githubusercontent.com/kmuchiri/gnomad/main/install.sh | bash
 ```
 
-### Fedora
-```bash
-sudo dnf install -y python-pipx gnome-shell-extensions
-```
+*(Ensure `~/.local/bin` is in your `$PATH`)*
 
-### Debian / Ubuntu
+### Other Installation Options
+
+- **System-Wide Install** (requires sudo):
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/kmuchiri/gnomad/main/install.sh | sudo bash -s -- --system
+  ```
+
+- **Local Git Clone Install**:
+  ```bash
+  ./install.sh
+  ```
+
+- **Standalone Single-File Binary**:
+  Build a portable, self-extracting single executable with zero external dependencies:
+  ```bash
+  make bundle
+  # Generated binary located at dist/gnomad
+  ./dist/gnomad --help
+  ```
+
+### Uninstallation
+
 ```bash
-sudo apt-get install -y python3-pipx gnome-shell-extensions
+curl -fsSL https://raw.githubusercontent.com/kmuchiri/gnomad/main/install.sh | bash -s -- --uninstall
 ```
+*(Your custom user profiles in `~/.local/share/gnomad/profiles/` are always preserved.)*
 
 ---
 
-## Installation
+## Requirements & Dependencies
 
-You can install `gnomad` as a system or user executable, run it in-tree, or compile it into a single standalone binary.
-
-### Option 1: Rootless User Install (Recommended)
-Installs binary to `~/.local/bin/gnomad` and libraries to `~/.local/share/gnomad/`:
-```bash
-./install.sh --user
-```
-*(Ensure `~/.local/bin` is in your `$PATH`)*
-
-### Option 2: System-Wide Install
-Installs to `/usr/local/bin` and `/usr/local/share/gnomad`:
-```bash
-sudo make install
-# Or:
-sudo ./install.sh --system
-```
-
-### Option 3: Standalone Single-File Binary
-Build a portable, self-extracting single executable with zero external dependencies:
-```bash
-make bundle
-# Output is located at dist/gnomad:
-./dist/gnomad --help
-```
-You can move `dist/gnomad` anywhere in your `$PATH` (e.g. `/usr/local/bin/gnomad`).
-
-### Option 4: Arch Linux Package
-Build and install using `pacman`:
-```bash
-cd packaging/arch
-makepkg -si
-```
-
-### Uninstallation
-```bash
-./install.sh --uninstall
-# Or:
-sudo make uninstall
-```
+- **System**: Any Linux distribution with GNOME 45+ (e.g. Arch, Fedora, Ubuntu/Debian, openSUSE).
+- **Core Dependencies**: `bash`, `dconf`, `python-pipx`, `gnome-shell-extensions`.
+  *(When running `gnomad load`, it will automatically detect your package manager and attempt to install any missing dependencies).*
 
 ---
 
 ## Usage
 
-Once installed, you can invoke `gnomad` from any terminal directory:
+Once installed, you can invoke `gnomad` directly from any directory:
 
 ```bash
 gnomad create <profile-name>        # Snapshot current system into a user profile
@@ -97,7 +78,7 @@ gnomad import <dir> [profile-name]  # Import a profile directory into user profi
 ## Profile Management & Locations
 
 - **User Profiles**: Stored in `~/.local/share/gnomad/profiles/<name>/` (`$XDG_DATA_HOME/gnomad/profiles/`).
-- **Built-in Profiles**: Shipped in `/usr/local/share/gnomad/profiles/` (or `~/.local/share/gnomad/profiles/` for user installs).
+- **Built-in Profiles**: Shipped in `~/.local/share/gnomad/builtin-profiles/` (or `/usr/local/share/gnomad/builtin-profiles/`).
 - **Exporting a Profile**:
   ```bash
   gnomad export default-arch ~/my-backups/default-arch
@@ -125,12 +106,11 @@ gnomad import <dir> [profile-name]  # Import a profile directory into user profi
 .
 ├── cli/           # CLI command scripts (create, load, list, export, import)
 ├── dist/          # Output directory for standalone bundle binary (make bundle)
-├── packaging/     # Package recipes (Arch PKGBUILD)
 ├── profiles/      # Built-in reference profiles (default, default-arch)
 ├── scripts/       # Bundling and build scripts
 ├── utils/         # OS detection, import, and export utilities
 ├── gnomad         # Entrypoint executable
-├── install.sh     # Interactive / automated installer
+├── install.sh     # Distro-agnostic curl and local installer
 └── Makefile       # Standard Unix build & installation Makefile
 ```
 
