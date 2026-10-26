@@ -21,14 +21,14 @@ dconf dump /org/gnome/mutter/ > "$PROFILE_DIR/workspace/mutter-settings.dconf"
 echo "  [workspace] Capturing shell keybindings..."
 dconf dump /org/gnome/shell/keybindings/ > "$PROFILE_DIR/workspace/shell-keybindings.dconf"
 
-# Custom scripts from ~/custom-scripts/
-CUSTOM_SCRIPTS_SRC="$HOME/custom-scripts"
+# Custom scripts from ~/.custom-scripts/
+CUSTOM_SCRIPTS_SRC="$HOME/.custom-scripts"
 if [ -d "$CUSTOM_SCRIPTS_SRC" ]; then
   echo "  [workspace] Capturing custom scripts..."
   mkdir -p "$PROFILE_DIR/workspace/custom-scripts"
   cp -r "$CUSTOM_SCRIPTS_SRC/." "$PROFILE_DIR/workspace/custom-scripts/"
 else
-  echo "  [workspace] No ~/custom-scripts/ found, skipping."
+  echo "  [workspace] No ~/.custom-scripts/ found, skipping."
 fi
 
 # Workspace count and dynamic/fixed mode
