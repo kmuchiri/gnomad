@@ -14,7 +14,7 @@ if [ -d "$PROFILE_DIR" ]; then
   echo "Profile '$PROFILE_NAME' already exists. Overwrite? [y/N] "
   read -r answer
   if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
-    echo "Aborted."
+    echo "Overwrite Aborted."
     exit 0
   fi
 fi
@@ -31,6 +31,7 @@ bash "$ROOT_DIR/utils/export/export-extensions.sh"  "$PROFILE_DIR"
 bash "$ROOT_DIR/utils/export/export-workspace.sh"   "$PROFILE_DIR"
 bash "$ROOT_DIR/utils/export/export-wallpapers.sh"  "$PROFILE_DIR"
 bash "$ROOT_DIR/utils/export/export-configs.sh"     "$PROFILE_DIR"
+bash "$ROOT_DIR/utils/export/export-info.sh"        "$PROFILE_DIR"
 
 echo ""
 echo "✓ Profile '$PROFILE_NAME' saved to profiles/$PROFILE_NAME/"
