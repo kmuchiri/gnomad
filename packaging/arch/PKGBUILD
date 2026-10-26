@@ -1,0 +1,16 @@
+# Maintainer: kgm <kananagmuchiri@gmail.com>
+pkgname=gnomad
+pkgver=0.2.0
+pkgrel=1
+pkgdesc="A setup migration utility script for GNOME DE"
+arch=('any')
+url="https://github.com/kgm/gnomad"
+license=('MIT')
+depends=('bash' 'dconf' 'python-pipx' 'gnome-shell-extensions')
+makedepends=('make')
+
+package() {
+  # Build from repository root
+  REPO_DIR="$(cd "$startdir/../.." && pwd)"
+  make -C "$REPO_DIR" DESTDIR="$pkgdir" PREFIX="/usr" install
+}
