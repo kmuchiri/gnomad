@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+GNOMAD_LIB_DIR="${GNOMAD_LIB_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
 PROFILE_DIR="$1"
 
 if [ -z "$PROFILE_DIR" ]; then
@@ -8,7 +8,7 @@ if [ -z "$PROFILE_DIR" ]; then
   exit 1
 fi
 
-source "$ROOT_DIR/utils/utils.sh"
+source "$GNOMAD_LIB_DIR/utils/utils.sh"
 
 EXT_LIST="$PROFILE_DIR/extensions/ext-list.txt"
 SETTINGS_DCONF="$PROFILE_DIR/extensions/settings.dconf"
