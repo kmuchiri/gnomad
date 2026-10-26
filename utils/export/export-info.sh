@@ -2,9 +2,9 @@
 
 PROFILE_DIR="$1"
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GNOMAD_LIB_DIR="${GNOMAD_LIB_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
 
-source "$SCRIPT_DIR/../utils.sh"
+source "$GNOMAD_LIB_DIR/utils/utils.sh"
 
 
 #make  info/conf file
