@@ -1,5 +1,44 @@
 #!/bin/bash
 
+GNOMAD_VERSION="0.2.0"
+
+# Resolve real path of the script even if invoked via symlink
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+BIN_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
+# Resolve library & assets directory
+if [ -n "$GNOMAD_LIB_DIR" ] && [ -d "$GNOMAD_LIB_DIR/cli" ]; then
+  : # Environment override respected
+elif [ -d "$BIN_DIR/cli" ] && [ -d "$BIN_DIR/utils" ]; then
+  # In-tree development mode or standalone extracted directory
+  GNOMAD_LIB_DIR="$BIN_DIR"
+elif [ -d "$HOME/.local/share/gnomad/cli" ]; then
+  # User installation
+  GNOMAD_LIB_DIR="$HOME/.local/share/gnomad"
+elif [ -d "/usr/local/share/gnomad/cli" ]; then
+  # System installation (/usr/local)
+  GNOMAD_LIB_DIR="/usr/local/share/gnomad"
+elif [ -d "/usr/share/gnomad/cli" ]; then
+  # System installation (/usr)
+  GNOMAD_LIB_DIR="/usr/share/gnomad"
+else
+  echo "Error: Could not locate gnomad libraries." >&2
+  echo "Please check your installation or set GNOMAD_LIB_DIR." >&2
+  exit 1
+fi
+
+export GNOMAD_LIB_DIR
+export GNOMAD_DATA_DIR="${GNOMAD_DATA_DIR:-$GNOMAD_LIB_DIR}"
+export GNOMAD_USER_PROFILES_DIR="${GNOMAD_USER_PROFILES_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/gnomad/profiles}"
+
+# Source OS Detection and Utilities
+source "$GNOMAD_LIB_DIR/utils/utils.sh"
+
 print_logo() {
     cat << EOF
                                                        888 
@@ -13,41 +52,71 @@ Y88b 888 888  888 Y88..88P 888  888  888 888  888 Y88b 888
      888                                                   
 Y8b d88P                                                   
  "Y88P"                                  
- 
 
 EOF
 }
 
-(${DISTRO_STR:-ARCH})
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-# Source OS Detection and Utilities
-source "$SCRIPT_DIR/utils/utils.sh"
-
-clear
-print_logo
+print_usage() {
+  echo "Usage: gnomad <command> [arguments]"
+  echo ""
+  echo "Commands:"
+  echo "  create <name>        Capture current system state into a named profile"
+  echo "  load   <name>        Apply a saved profile to the system"
+  echo "  list                 Show all available profiles"
+  echo "  export <name> [dir]  Extract a profile to a directory (default: ./<name>)"
+  echo "  import <dir> [name]  Import a profile directory into user profiles"
+  echo ""
+  echo "Options:"
+  echo "  -h, --help           Show this help message"
+  echo "  -v, --version        Show version"
+  echo ""
+}
 
 COMMAND="$1"
-shift
+shift 2>/dev/null || true
 
 case "$COMMAND" in
+  -v|--version|version)
+    echo "gnomad v$GNOMAD_VERSION"
+    exit 0
+    ;;
+  -h|--help|help|"")
+    clear
+    print_logo
+    print_usage
+    [ -z "$COMMAND" ] && exit 1 || exit 0
+    ;;
   create)
-    bash "$SCRIPT_DIR/cli/create.sh" "$@"
+    clear
+    print_logo
+    bash "$GNOMAD_LIB_DIR/cli/create.sh" "$@"
     ;;
   load)
-    bash "$SCRIPT_DIR/cli/load.sh" "$@"
+    clear
+    print_logo
+    bash "$GNOMAD_LIB_DIR/cli/load.sh" "$@"
     ;;
   list)
-    bash "$SCRIPT_DIR/cli/list.sh" "$@"
+    clear
+    print_logo
+    bash "$GNOMAD_LIB_DIR/cli/list.sh" "$@"
+    ;;
+  export|export-profile)
+    clear
+    print_logo
+    bash "$GNOMAD_LIB_DIR/cli/export.sh" "$@"
+    ;;
+  import|import-profile)
+    clear
+    print_logo
+    bash "$GNOMAD_LIB_DIR/cli/import.sh" "$@"
     ;;
   *)
-    echo "Usage: $0 {create|load|list} [profile-name]"
+    clear
+    print_logo
+    echo "Error: Unknown command '$COMMAND'"
     echo ""
-    echo "  create <name>   Capture current system state into a named profile"
-    echo "  load   <name>   Apply a saved profile to the system"
-    echo "  list            Show all available profiles"
-    echo ""
+    print_usage
     exit 1
     ;;
 esac
